@@ -1,5 +1,6 @@
 const express = require("express");
-const router = express.Router();
+const authenticateToken = require("../middleware/authMiddleware"); // Import JWT middleware
+
 const {
     getUsers,
     getUserById,
@@ -7,6 +8,9 @@ const {
     updateUser,
     deleteUser,
 } = require("../controllers/userController");
+
+const router = express.Router();
+router.use(authenticateToken);
 
 router.get("/getUsers/:page", getUsers);
 router.get("/getUser/:_id", getUserById);

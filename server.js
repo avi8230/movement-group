@@ -5,10 +5,13 @@ const axios = require("axios");
 const connectDB = require("./config/db"); //Connect to database
 const User = require("./models/UserModel"); // User model
 const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 app.use(cors({ origin: ["https://localhost", "https://www.google.com", "https://www.facebook.com"] }));
 app.use(express.json());
+app.use(cookieParser()); // Enable cookie support
 
 const fetchAndStoreUsers = async () => {
     try {
@@ -31,7 +34,8 @@ const fetchAndStoreUsers = async () => {
 // Connecting to the database then retrieving and saving users
 connectDB().then(fetchAndStoreUsers);
 
-app.use("/api", userRoutes);
+app.use("/api/users", userRoutes); // User routes
+app.use("/api/auth", authRoutes); // Authentication routes
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
