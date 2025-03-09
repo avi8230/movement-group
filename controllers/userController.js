@@ -4,8 +4,19 @@ const User = require("../models/UserModel");
 // ✅ Retrieving all users
 const getUsers = async (req, res) => {
     try {
-        const users = await User.find();
-        res.json(users);
+        const page = parseInt(req.params.page) || 1; // Get page number from URL, default is 1
+        const limit = 5; // Number of users per page
+        const skip = (page - 1) * limit; // Calculate how many users to skip
+
+        const users = await User.find().skip(skip).limit(limit);
+        const totalUsers = await User.countDocuments(); // Get total number of users in DB
+
+        res.json({
+            page,
+            totalPages: Math.ceil(totalUsers / limit),
+            totalUsers,
+            users,
+        });
     } catch (error) {
         res.status(500).json({ error: "Failed to fetch users" });
     }
