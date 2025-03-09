@@ -9,7 +9,10 @@ const authRoutes = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
 
 const app = express();
-app.use(cors({ origin: ["https://localhost", "https://www.google.com", "https://www.facebook.com"] }));
+app.use(cors({
+    origin: ["http://localhost:5173", "https://www.google.com", "https://www.facebook.com"],
+    credentials: true // Enable credentials - cookies
+}));
 app.use(express.json());
 app.use(cookieParser()); // Enable cookie support
 
