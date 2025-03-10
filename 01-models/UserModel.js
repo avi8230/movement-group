@@ -1,10 +1,26 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const validator = require("validator");
 
 // User schema
 const UserSchema = new mongoose.Schema({
-    email: { type: String, required: true, unique: true },
-    password: { type: String }, // Hashed password
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        validate: [validator.isEmail, "Invalid email address"]
+    },
+    password: {
+        type: String,
+        // required: true,
+        minlength: 8,
+        validate: {
+            validator: function (value) {
+                return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/.test(value); // e.g. 1234Abcd!
+            },
+            message: "Password must be at least 8 characters long, include uppercase, lowercase, number, and special character."
+        }
+    },
     first_name: { type: String, required: true },
     last_name: { type: String, required: true },
     avatar: String,
