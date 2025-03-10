@@ -29,14 +29,11 @@ const register = async (req, res) => {
         });
 
         res.status(201).json({
-            message: "User registered and logged in successfully",
-            user: {
-                _id: user._id,
-                email: user.email,
-                first_name: user.first_name,
-                last_name: user.last_name,
-                avatar: user.avatar
-            }
+            _id: user._id,
+            email: user.email,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            avatar: user.avatar
         });
     } catch (error) {
         res.status(500).json({ error: "Registration failed" });
@@ -70,14 +67,11 @@ const login = async (req, res) => {
         });
 
         res.json({
-            message: "Login successful",
-            user: {
-                _id: user._id,
-                email: user.email,
-                first_name: user.first_name,
-                last_name: user.last_name,
-                avatar: user.avatar
-            }
+            _id: user._id,
+            email: user.email,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            avatar: user.avatar
         });
     } catch (error) {
         res.status(500).json({ error: "Login failed" });
