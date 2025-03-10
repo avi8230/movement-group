@@ -41,6 +41,7 @@ const getUserById = async (req, res) => {
 // Create a new user
 const createUser = async (req, res) => {
     try {
+        delete req.body._id; // Ensure _id is not passed in request body
         const newUser = new User(req.body);
         await newUser.save();
         res.status(201).json(newUser);
