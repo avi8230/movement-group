@@ -2,10 +2,10 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
-const connectDB = require("./config/db"); //Connect to database
-const User = require("./models/UserModel"); // User model
-const userRoutes = require("./routes/userRoutes");
-const authRoutes = require("./routes/authRoutes");
+const connectDB = require("./05-config/db"); //Connect to database
+const User = require("./01-models/UserModel"); // User model
+const userRoutes = require("./02-routes/userRoutes");
+const authRoutes = require("./02-routes/authRoutes");
 const cookieParser = require("cookie-parser");
 
 const app = express();

@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const User = require("../models/UserModel");
+const User = require("../01-models/UserModel");
 
 // Register new user and store JWT in HttpOnly cookie
 const register = async (req, res) => {
