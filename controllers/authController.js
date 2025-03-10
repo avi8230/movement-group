@@ -36,7 +36,7 @@ const register = async (req, res) => {
             avatar: user.avatar
         });
     } catch (error) {
-        res.status(500).json({ error: "Registration failed" });
+        res.status(500).json({ error: `Registration failed: ${error.message}` });
     }
 };
 
@@ -74,14 +74,18 @@ const login = async (req, res) => {
             avatar: user.avatar
         });
     } catch (error) {
-        res.status(500).json({ error: "Login failed" });
+        res.status(500).json({ error: `Login failed: ${error.message}` });
     }
 };
 
 // Logout user by clearing the JWT cookie
 const logout = (req, res) => {
-    res.clearCookie("token"); // Remove the token cookie
-    res.json({ message: "Logged out successfully" });
+    try {
+        res.clearCookie("token"); // Remove the token cookie
+        res.json({ message: "Logged out successfully" });
+    } catch (error) {
+        res.status(500).json({ error: `Logout failed: ${error.message}` });
+    }
 };
 
 module.exports = { register, login, logout };
