@@ -37,7 +37,7 @@ const fetchAndStoreUsers = async () => {
 // Connecting to the database then retrieving and saving users
 connectDB().then(fetchAndStoreUsers);
 
-app.use("/api/users", userRoutes); // User routes
+app.use("/api/user", userRoutes); // User routes
 app.use("/api/auth", authRoutes); // Authentication routes
 
 const PORT = process.env.PORT;
