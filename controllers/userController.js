@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const User = require("../models/UserModel");
 
-// ✅ Retrieving all users
+// Retrieving all users
 const getUsers = async (req, res) => {
     try {
         const page = parseInt(req.params.page) || 1; // Get page number from URL, default is 1
@@ -22,7 +22,7 @@ const getUsers = async (req, res) => {
     }
 };
 
-// ✅ Retrieving a user by _id
+// Retrieving a user by _id
 const getUserById = async (req, res) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(req.params._id)) {
@@ -38,7 +38,7 @@ const getUserById = async (req, res) => {
     }
 };
 
-// ✅ Create a new user
+// Create a new user
 const createUser = async (req, res) => {
     try {
         const newUser = new User(req.body);
@@ -49,7 +49,7 @@ const createUser = async (req, res) => {
     }
 };
 
-// ✅ Update user by _id
+// Update user by _id
 const updateUser = async (req, res) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(req.params._id)) {
@@ -65,7 +65,7 @@ const updateUser = async (req, res) => {
     }
 };
 
-// ✅ Delete user by _id
+// Delete user by _id
 const deleteUser = async (req, res) => {
     try {
         if (!mongoose.Types.ObjectId.isValid(req.params._id)) {
