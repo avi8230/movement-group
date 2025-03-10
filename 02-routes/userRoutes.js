@@ -10,7 +10,7 @@ const {
 } = require("../03-controllers/userController");
 
 const router = express.Router();
-router.use(authenticateToken);
+// router.use(authenticateToken);
 
 // User routes
 router.get("/getUsers/:page", getUsers);
