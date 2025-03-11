@@ -6,7 +6,7 @@ const User = require("./01-models/UserModel"); // User model
 const userRoutes = require("./02-routes/userRoutes");
 const authRoutes = require("./02-routes/authRoutes");
 const cookieParser = require("cookie-parser");
-require("./05-config/db"); //Connect to database
+require("./05-config/db"); // Connect to database
 
 
 const app = express();
@@ -17,6 +17,8 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser()); // Enable cookie support
 
+
+// Fetch users from ReqRes and store in MongoDB
 const fetchAndStoreUsers = async () => {
     try {
         const response = await axios.get("https://reqres.in/api/users?per_page=12");
@@ -34,10 +36,8 @@ const fetchAndStoreUsers = async () => {
         console.error("❌ Error fetching users from ReqRes:", error);
     }
 };
-
-// Connecting to the database then retrieving and saving users
-// connectDB().then(
 fetchAndStoreUsers()
+
 
 app.use("/api/user", userRoutes); // User routes
 app.use("/api/auth", authRoutes); // Authentication routes
