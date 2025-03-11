@@ -11,7 +11,7 @@ require("./05-config/db"); // Connect to database
 
 const app = express();
 app.use(cors({
-    origin: ["http://localhost:5173", "http://localhost:3000", "https://www.google.com", "https://www.facebook.com"],
+    origin: ["http://localhost:5173", "https://www.google.com", "https://www.facebook.com"],
     credentials: true // Enable credentials - cookies
 }));
 app.use(express.json());
