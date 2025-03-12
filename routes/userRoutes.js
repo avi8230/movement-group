@@ -10,13 +10,15 @@ const {
 } = require("../controllers/userController");
 
 const router = express.Router();
-router.use(authenticateToken);
+// router.use(authenticateToken);
 
 // User routes
 router.get("/getUsers/:page", getUsers);
-router.get("/getUser/:_id", getUserById);
-router.post("/createUser", createUser);
-router.put("/updateUser/:_id", updateUser);
-router.delete("/deleteUser/:_id", deleteUser);
+
+
+router.get("/getUser/:_id",authenticateToken, getUserById);
+router.post("/createUser",authenticateToken, createUser);
+router.put("/updateUser/:_id",authenticateToken, updateUser);
+router.delete("/deleteUser/:_id",authenticateToken, deleteUser);
 
 module.exports = router;
