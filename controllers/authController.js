@@ -88,4 +88,8 @@ const logout = (req, res) => {
     }
 };
 
-module.exports = { register, login, logout };
+module.exports = {
+    register,
+    login,
+    logout
+};
