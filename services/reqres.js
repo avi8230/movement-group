@@ -1,10 +1,12 @@
 const axios = require("axios");
 const User = require("../models/UserModel"); // User model
 
+const REQRES_API_URL = "https://reqres.in/api";
+
 // Fetch users from ReqRes and store in MongoDB
 const fetchAndStoreUsers = async () => {
     try {
-        const response = await axios.get("https://reqres.in/api/users?per_page=12");
+        const response = await axios.get(`${REQRES_API_URL}/users?per_page=12`);
         const users = response.data.data;
 
         // Check if the users already exist
