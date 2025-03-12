@@ -6,7 +6,7 @@ const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
 require("./services/mongodb/db"); // Connect to database
-const { fetchAndStoreUsers } = require("./services/reqres/reqres");
+const { fetchAndStoreUsers } = require("./services/reqres/logic");
 
 // Create an Express app
 const app = express();
