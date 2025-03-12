@@ -1,5 +1,5 @@
 const axios = require("axios");
-const User = require("../models/UserModel"); // User model
+const User = require("../../models/UserModel"); // User model
 
 const REQRES_API_URL = "https://reqres.in/api";
 
