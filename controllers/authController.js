@@ -78,18 +78,35 @@ const login = async (req, res) => {
     }
 };
 
-// Logout user by clearing the JWT cookie
-const logout = (req, res) => {
+// Logout user and clear JWT cookie
+const logout = async (req, res) => {
+    res.clearCookie("token");
+    res.json({ message: "Logged out successfully" });
+};
+
+// Check authentication status
+const checkAuth = async (req, res) => {
     try {
-        res.clearCookie("token"); // Remove the token cookie
-        res.json({ message: "Logged out successfully" });
+        const user = await User.findById(req.user.userId);
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        res.json({
+            _id: user._id,
+            email: user.email,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            avatar: user.avatar
+        });
     } catch (error) {
-        res.status(500).json({ error: `Logout failed: ${error.message}` });
+        res.status(500).json({ error: `Authentication check failed: ${error.message}` });
     }
 };
 
 module.exports = {
     register,
     login,
-    logout
+    logout,
+    checkAuth
 };
