@@ -6,7 +6,7 @@ const User = require("./models/UserModel"); // User model
 const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
-require("./servers/mongodb"); // Connect to database
+require("./services/mongodb"); // Connect to database
 
 
 const app = express();
