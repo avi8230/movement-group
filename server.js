@@ -2,16 +2,16 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
-const User = require("./01-models/UserModel"); // User model
-const userRoutes = require("./02-routes/userRoutes");
-const authRoutes = require("./02-routes/authRoutes");
+const User = require("./models/UserModel"); // User model
+const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
-require("./05-config/db"); // Connect to database
+require("./servers/mongodb"); // Connect to database
 
 
 const app = express();
 app.use(cors({
-    origin: ["http://localhost:5173", "https://www.google.com", "https://www.facebook.com"],
+    origin: ["http://localhost:3000", "https://www.google.com", "https://www.facebook.com"],
     credentials: true // Enable credentials - cookies
 }));
 app.use(express.json());
